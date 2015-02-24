@@ -1,0 +1,9 @@
+/*Afficher tous les objets*/
+SELECT * FROM 'smObject';
+/*Afficher tous les utilisateurs*/
+SELECT * FROM 'smUser';
+/*Afficher toutes les categories*/
+SELECT  * FROM 'smCategory';
+
+/*Afficher tous les objets d'un utilisateur*/
+SELECT * FROM smObject INNER JOIN smUser ON smUser.idUser = smObject.smUser_idUser WHERE smUser.nameUser='Louis';
