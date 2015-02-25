@@ -7,3 +7,6 @@ SELECT  * FROM 'smCategory';
 
 /*Afficher tous les objets d'un utilisateur*/
 SELECT * FROM smObject INNER JOIN smUser ON smUser.idUser = smObject.smUser_idUser WHERE smUser.nameUser='Louis';
+
+/*Selectionner les infos objets en lien avec les utilisateurs catégories et villes*/
+SELECT idObject, nameObject, brandObject, descObject, latObject, longObject, YearObject, idUser ,nameUser, idCategory, nameCategory, idCity, nameCity FROM smObject INNER JOIN smUser ON smUser.idUser = smObject.smUser_idUser INNER JOIN smCategory ON smObject.smCategory_idCategory=smCategory.idCategory INNER JOIN smCity ON smObject.smCity_idCity = smCity.idCity;
