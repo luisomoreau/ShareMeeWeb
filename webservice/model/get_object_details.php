@@ -1,5 +1,6 @@
 <?php
 
+header('Content-Type: application/json; charset=utf-8');
 
 /*
  * Following code will get single object details
@@ -14,6 +15,7 @@ require '../controller/db_connect.php';
 
 // connecting to db
 $db = new DB_CONNECT();
+mysql_query('SET CHARACTER SET utf8');
 
 if (isset($_GET["idObject"])) {
     $idObject = $_GET['idObject'];
@@ -44,6 +46,7 @@ $result = mysql_query("SELECT * FROM smObject INNER JOIN smUser ON smUser.idUser
             $object["idCity"] = $result["idCity"];
             $object["nameCity"] = $result["nameCity"];
             $object["zipcodeCity"] = $result["zipcodeCity"];
+
             // success
             $response["success"] = 1;
 
@@ -53,6 +56,8 @@ $result = mysql_query("SELECT * FROM smObject INNER JOIN smUser ON smUser.idUser
             // push single product into final response array
             array_push($response["object"], $object);
 
+
+
             // echoing JSON response
             echo json_encode($response);
         } else {
@@ -61,7 +66,7 @@ $result = mysql_query("SELECT * FROM smObject INNER JOIN smUser ON smUser.idUser
             $response["message"] = "No product found";
 
             // echo no users JSON
-            echo json_encode($response);
+            echo json_encode($response, JSON_UNESCAPED_UNICODE);
         }
     } else {
         // no product found
