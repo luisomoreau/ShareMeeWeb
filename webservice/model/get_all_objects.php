@@ -18,7 +18,11 @@ $db = new DB_CONNECT();
 mysql_query('SET CHARACTER SET utf8');
 
 // get all products from products table
-$result = mysql_query("SELECT idObject, nameObject, brandObject, descObject, latObject, longObject, yearObject, idUser ,nameUser, idCategory, nameCategory, idCity, nameCity FROM smObject INNER JOIN smUser ON smUser.idUser = smObject.smUser_idUser INNER JOIN smCategory ON smObject.smCategory_idCategory=smCategory.idCategory INNER JOIN smCity ON smObject.smCity_idCity = smCity.idCity;") or die(mysql_error());
+$result = mysql_query("SELECT idObject, nameObject, brandObject, descObject, latObject, longObject, yearObject, idUser ,nameUser, idCategory, nameCategory, idCity, nameCity
+FROM smObject INNER JOIN smUser ON smUser.idUser = smObject.smUser_idUser
+INNER JOIN smCategory ON smObject.smCategory_idCategory=smCategory.idCategory
+INNER JOIN smCity ON smObject.smCity_idCity = smCity.idCity
+ORDER BY addedDateTimeObject DESC;") or die(mysql_error());
 
 // check for empty result
 if (mysql_num_rows($result) > 0) {
