@@ -37,6 +37,7 @@ $result = mysql_query("SELECT * FROM smObject INNER JOIN smUser ON smUser.idUser
             $object["latObject"] = $result["latObject"];
             $object["longObject"] = $result["longObject"];
             $object["yearObject"] = $result["yearObject"];
+            $object["imagePath1Object"] = $result["imagePath1Object"];
             $object["addedDateTimeObject"] = $result["addedDateTimeObject"];
             $object["idUser"] = $result["idUser"];
             $object["nameUser"] = $result["nameUser"];
