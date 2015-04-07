@@ -4,20 +4,28 @@
  * Following code will list all the products
  */
 
-$user = 'Louis';
 
 // array for JSON response
 $response = array();
 
 
 // include db connect class
-require_once __DIR__ . '../controller/db_connect.php';
+require '../controller/db_connect.php';
 
 // connecting to db
 $db = new DB_CONNECT();
+mysql_query('SET CHARACTER SET utf8');
+
+if (isset($_GET["idUser"])) {
+    $user = $_GET['idUser'];
 
 // get all products from products table
-$result = mysql_query("SELECT * FROM smObject INNER JOIN smUser ON smUser.idUser = smObject.smUser_idUser WHERE smUser.nameUser='$user'") or die(mysql_error());
+$result = mysql_query("SELECT idObject, nameObject, brandObject, descObject, latObject, longObject, yearObject, idUser ,nameUser, idCategory, nameCategory, idCity, nameCity
+FROM smObject INNER JOIN smUser ON smUser.idUser = smObject.smUser_idUser
+INNER JOIN smCategory ON smObject.smCategory_idCategory=smCategory.idCategory
+INNER JOIN smCity ON smObject.smCity_idCity = smCity.idCity
+WHERE smUser.idUser=$user
+ORDER BY addedDateTimeObject DESC;") or die(mysql_error());
 
 // check for empty result
 if (mysql_num_rows($result) > 0) {
@@ -35,8 +43,12 @@ if (mysql_num_rows($result) > 0) {
         $object["latObject"] = $row["latObject"];
         $object["longObject"] = $row["longObject"];
         $object["YearObject"] = $row["YearObject"];
-        $object["idCity"] = $row["smCity_idCity"];
-        $object["idCategory"] = $row["smCategory_idCategory"];
+        $object["idUser"] = $row["idUser"];
+        $object["nameUser"] = $row["nameUser"];
+        $object["idCategory"] = $row["idCategory"];
+        $object["nameCategory"] = $row["nameCategory"];
+        $object["idCity"] = $row["idCity"];
+        $object["nameCity"] = $row["nameCity"];
 
         // push single product into final response array
         array_push($response["objects"], $object);
@@ -53,5 +65,6 @@ if (mysql_num_rows($result) > 0) {
 
     // echo no users JSON
     echo json_encode($response);
-}
+}}
+
 

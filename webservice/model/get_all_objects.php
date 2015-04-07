@@ -4,8 +4,6 @@
  * Following code will list all the products
  */
 
-$user = 'Louis';
-
 // array for JSON response
 $response = array();
 
