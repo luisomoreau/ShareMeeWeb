@@ -34,7 +34,7 @@ $result = mysql_query("SELECT * FROM smUser WHERE idUser = $idUser") or die(mysq
             $user["nameUser"] = $result["nameUser"];
             $user["surnameUser"] = $result["surnameUser"];
             $user["mailUser"] = $result["mailUser"];
-            $user["profilePictureUser"] = $result["profilePictureUser"];
+            $user["profilPictureUser"] = $result["profilPictureUser"];
 
             // success
             $response["success"] = 1;
