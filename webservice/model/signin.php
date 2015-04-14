@@ -16,6 +16,7 @@ if (isset($_POST['nameUser']) && isset($_POST['surnameUser']) && isset($_POST['m
   $surnameUser = $_POST['surnameUser'];
   $mailUser = $_POST['mailUser'];
   $passwordUser = $_POST['passwordUser'];
+  $dateRegistration;
 
 // include db connect class
   require '../controller/db_connect.php';
