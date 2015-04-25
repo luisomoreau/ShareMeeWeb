@@ -114,6 +114,9 @@ $mail->AltBody = 'This is a plain-text message body';
 //send the message, check for errors
 if (!$mail->send()) {
     echo "Mailer Error: " . $mail->ErrorInfo;
+    $response["success"] = 0;
+    $response["message"] = "Erreur";
+    echo json_encode($response);
 } else {
     echo "Message sent!";
     $response["success"] = 1;
