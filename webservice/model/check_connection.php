@@ -32,6 +32,7 @@ if (isset($_POST['mailUser']) && isset($_POST['passwordUser'])) {
             // success
             $response["success"] = 1;
             $response["idUser"]=$id;
+            $response["mailUser"]=$mailUser;
             $response["message"] = "Login successfull";
             // echoing JSON response
             echo json_encode($response);
