@@ -16,7 +16,7 @@ $db = new DB_CONNECT();
 mysql_query('SET CHARACTER SET utf8');
 
 // get all products from products table
-$result = mysql_query("SELECT idObject, nameObject, descObject, latObject, longObject, imagePath1Object, idUser ,nameUser, idCategory, nameCategory, idCity, nameCity
+$result = mysql_query("SELECT idObject, nameObject, descObject, latObject, longObject, imagePath1Object, idUser ,nameUser, idCategory, nameCategory
 FROM smObject INNER JOIN smUser ON smUser.idUser = smObject.smUser_idUser
 INNER JOIN smCategory ON smObject.smCategory_idCategory=smCategory.idCategory
 ORDER BY addedDateTimeObject DESC;") or die(mysql_error());

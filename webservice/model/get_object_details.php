@@ -21,7 +21,7 @@ if (isset($_GET["idObject"])) {
     $idObject = $_GET['idObject'];
 
 // get all products from products table
-$result = mysql_query("SELECT * FROM smObject INNER JOIN smUser ON smUser.idUser = smObject.smUser_idUser INNER JOIN smCategory ON smObject.smCategory_idCategory=smCategory.idCategory INNER JOIN smCity ON smObject.smCity_idCity = smCity.idCity WHERE idObject = $idObject") or die(mysql_error());
+$result = mysql_query("SELECT * FROM smObject INNER JOIN smUser ON smUser.idUser = smObject.smUser_idUser INNER JOIN smCategory ON smObject.smCategory_idCategory=smCategory.idCategory WHERE idObject = $idObject") or die(mysql_error());
 
     if (!empty($result)) {
         // check for empty result
