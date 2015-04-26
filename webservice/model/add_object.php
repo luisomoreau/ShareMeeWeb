@@ -25,6 +25,14 @@ if (isset($_POST['nameObject']) && isset($_POST['descObject']) /*&& isset($_POST
     $smUser_idUser = $_POST['smUser_idUser']+0;
     $smCategory_idCategory = $_POST['smCategory_idCategory']+0;
 
+    $champs=array();
+    $champs['nameObject']=$nameObject;
+    $champs['descObject']=$descObject;
+    $champs['latObject']=$latObject;
+    $champs['longObject']=$longObject;
+    $champs['smUser_idUser']=$smUser_idUser;
+    $champs['smCategory_idCategory']=$smCategory_idCategory;
+
 // include db connect class
     require '../controller/db_connect.php';
 
@@ -48,6 +56,8 @@ if (isset($_POST['nameObject']) && isset($_POST['descObject']) /*&& isset($_POST
         $response["message"] = "Requête incorrecte.";
         $response["fields"]=array();
         array_push($response["fields"], $fields);
+        $response["champs"]=array();
+        array_push($response["champs"], $champs);
 
         echo json_encode($response);
     }
