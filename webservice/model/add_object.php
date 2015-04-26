@@ -8,32 +8,30 @@ $fields['nameObject']=$_POST['nameObject'];
 $fields['descObject']=$_POST['descObject'];
 $fields['latObject'] = $_POST['latObject'];
 $fields['longObject'] = $_POST['longObject'];
-//$fields['imagePathObject']=$_POST['imagePathObject'];
+$fields['imagePathObject']=$_POST['imagePathObject'];
 $fields['smUser_idUser']=$_POST['smUser_idUser'];
 $fields['smCategory_idCategory']=$_POST['smCategory_idCategory'];
 
 
 
 // check for required fields
-if (isset($_POST['nameObject']) && isset($_POST['descObject']) /*&& isset($_POST['imagePathObject'])*/ && isset($_POST['smCategory_idCategory'])&& isset($_POST['smUser_idUser'])) {
+if (isset($_POST['nameObject']) && isset($_POST['descObject']) && isset($_POST['smCategory_idCategory'])&& isset($_POST['smUser_idUser'])) {
 
     $nameObject = $_POST['nameObject'];
     $descObject = $_POST['descObject'];
-    $latObject = $_POST['latObject']+1.1;
-    $longObject = $_POST['longObject']+1.1;
-    //$imagePathObject = $_POST['imagePathObject'];
-    $smUser_idUser = $_POST['smUser_idUser']+0;
-    $smCategory_idCategory = $_POST['smCategory_idCategory']+0;
+    $latObject = $_POST['latObject'];
+    $longObject = $_POST['longObject'];
+    $smUser_idUser = $_POST['smUser_idUser'];
+    $smCategory_idCategory = $_POST['smCategory_idCategory'];
 
-    $latObject=$latObject-1.1;
-    $longObject=$longObject-1.1;
-    $champs=array();
-    $champs['nameObject']=$nameObject;
-    $champs['descObject']=$descObject;
-    $champs['latObject']=$latObject;
-    $champs['longObject']=$longObject;
-    $champs['smUser_idUser']=$smUser_idUser;
-    $champs['smCategory_idCategory']=$smCategory_idCategory;
+    if(isset($_POST['imagePathObject'])){
+        $imagePathObject = $_POST['imagePathObject'];
+    }
+    else{
+        $imagePathObject = null;
+    }
+
+
 
 // include db connect class
     require '../controller/db_connect.php';
@@ -57,10 +55,6 @@ if (isset($_POST['nameObject']) && isset($_POST['descObject']) /*&& isset($_POST
         echo(mysql_error());
         $response["success"] = 2;
         $response["message"] = "Requête incorrecte.";
-        $response["fields"]=array();
-        array_push($response["fields"], $fields);
-        $response["champs"]=array();
-        array_push($response["champs"], $champs);
 
         echo json_encode($response);
     }
