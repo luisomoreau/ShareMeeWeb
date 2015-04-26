@@ -1,25 +1,15 @@
 <?php
-echo $_FILES['image']['name'] . '<br/>';
-
-
-//ini_set('upload_max_filesize', '10M');
-//ini_set('post_max_size', '10M');
-//ini_set('max_input_time', 300);
-//ini_set('max_execution_time', 300);
-
-
-$target_path = "images/";
-
-$target_path = $target_path . basename($_FILES['image']['name']);
-
-try {
-    //throw exception if can't move the file
-    if (!move_uploaded_file($_FILES['image']['tmp_name'], $target_path)) {
-        throw new Exception('Could not move file');
-    }
-
-    echo "The file " . basename($_FILES['image']['name']) .
-        " has been uploaded";
-} catch (Exception $e) {
-    die('File did not upload: ' . $e->getMessage());
-}
+// Get image string posted from Android App
+$base=$_REQUEST['image'];
+// Get file name posted from Android App
+$filename = $_REQUEST['filename'];
+// Decode Image
+$binary=base64_decode($base);
+header('Content-Type: bitmap; charset=utf-8');
+// Images will be saved under 'www/imgupload/uplodedimages' folder
+$file = fopen('../images/'.$filename, 'wb');
+// Create File
+fwrite($file, $binary);
+fclose($file);
+echo 'Image upload complete, Please check your php file directory';
+?>

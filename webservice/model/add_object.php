@@ -41,7 +41,7 @@ if (isset($_POST['nameObject']) && isset($_POST['descObject']) && isset($_POST['
     mysql_query('SET CHARACTER SET utf8');
 
     // mysql update row with matched pid
-    $result = mysql_query("INSERT INTO smObject (idObject, nameObject, descObject, latObject, longObject, imagePath1Object, addedDateTimeObject, smCity_idCity, smUser_idUser, smCategory_idCategory) VALUES (NULL,'$nameObject','$descObject', $latObject, $longObject,$imagePath1Object ,NOW(),NULL ,$smUser_idUser,$smCategory_idCategory)");
+    $result = mysql_query("INSERT INTO smObject (idObject, nameObject, descObject, latObject, longObject, imagePath1Object, addedDateTimeObject, smCity_idCity, smUser_idUser, smCategory_idCategory) VALUES (NULL,'$nameObject','$descObject', $latObject, $longObject,'$imagePath1Object' ,NOW(),NULL ,$smUser_idUser,$smCategory_idCategory)");
 
     // check if row inserted or not
     if ($result) {
