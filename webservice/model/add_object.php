@@ -19,12 +19,14 @@ if (isset($_POST['nameObject']) && isset($_POST['descObject']) /*&& isset($_POST
 
     $nameObject = $_POST['nameObject'];
     $descObject = $_POST['descObject'];
-    $latObject = $_POST['latObject'];
-    $longObject = $_POST['longObject'];
+    $latObject = $_POST['latObject']+1.1;
+    $longObject = $_POST['longObject']+1.1;
     //$imagePathObject = $_POST['imagePathObject'];
-    $smUser_idUser = $_POST['smUser_idUser'];
-    $smCategory_idCategory = $_POST['smCategory_idCategory'];
+    $smUser_idUser = $_POST['smUser_idUser']+0;
+    $smCategory_idCategory = $_POST['smCategory_idCategory']+0;
 
+    $latObject=$latObject-1.1;
+    $longObject=$longObject-1.1;
     $champs=array();
     $champs['nameObject']=$nameObject;
     $champs['descObject']=$descObject;
