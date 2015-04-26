@@ -19,11 +19,11 @@ if (isset($_POST['nameObject']) && isset($_POST['descObject']) /*&& isset($_POST
 
     $nameObject = $_POST['nameObject'];
     $descObject = $_POST['descObject'];
-    $latObject = $_POST['latObject'];
-    $longObject = $_POST['longObject'];
+    $latObject = $_POST['latObject']+0.0;
+    $longObject = $_POST['longObject']+0.0;
     //$imagePathObject = $_POST['imagePathObject'];
-    $smUser_idUser = $_POST['smUser_idUser'];
-    $smCategory_idCategory = $_POST['smCategory_idCategory'];
+    $smUser_idUser = $_POST['smUser_idUser']+0;
+    $smCategory_idCategory = $_POST['smCategory_idCategory']+0;
 
 // include db connect class
     require '../controller/db_connect.php';
