@@ -25,7 +25,7 @@ if (isset($_POST['nameObject']) && isset($_POST['descObject']) && isset($_POST['
     $smCategory_idCategory = $_POST['smCategory_idCategory'];
 
     if(isset($_POST['imagePath1Object'])){
-        $imagePath1Object = mysql_real_escape_string($_POST['imagePath1Object']) ;
+        $imagePath1Object = $_POST['imagePath1Object'] ;
     }
     else{
         $imagePath1Object = null;
