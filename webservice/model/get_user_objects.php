@@ -23,7 +23,6 @@ if (isset($_GET["idUser"])) {
 $result = mysql_query("SELECT idObject, nameObject, descObject, latObject, longObject, imagePath1Object, idUser ,nameUser, idCategory, nameCategory, idCity, nameCity
 FROM smObject INNER JOIN smUser ON smUser.idUser = smObject.smUser_idUser
 INNER JOIN smCategory ON smObject.smCategory_idCategory=smCategory.idCategory
-INNER JOIN smCity ON smObject.smCity_idCity = smCity.idCity
 WHERE smUser.idUser=$user
 ORDER BY addedDateTimeObject DESC;") or die(mysql_error());
 
@@ -46,8 +45,6 @@ if (mysql_num_rows($result) > 0) {
         $object["nameUser"] = $row["nameUser"];
         $object["idCategory"] = $row["idCategory"];
         $object["nameCategory"] = $row["nameCategory"];
-        $object["idCity"] = $row["idCity"];
-        $object["nameCity"] = $row["nameCity"];
 
         // push single product into final response array
         array_push($response["objects"], $object);
