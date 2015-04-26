@@ -28,7 +28,7 @@ if (isset($_POST['nameObject']) && isset($_POST['descObject']) && isset($_POST['
         $imagePath1Object = $_POST['imagePath1Object'] ;
     }
     else{
-        $imagePath1Object = null;
+        $imagePath1Object ="NULL";
     }
 
 
