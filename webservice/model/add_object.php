@@ -46,7 +46,7 @@ if (isset($_POST['nameObject']) && isset($_POST['descObject']) /*&& isset($_POST
     } else {
         $response["success"] = 2;
         $response["message"] = "Requête incorrecte.";
-        $response["erreur"] = mysql_error($result);
+        $response["erreur"] = $result;
 
         echo json_encode($response);
     }
