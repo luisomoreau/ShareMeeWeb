@@ -33,7 +33,7 @@ if (isset($_POST['nameObject']) && isset($_POST['descObject']) /*&& isset($_POST
     mysql_query('SET CHARACTER SET utf8');
 
     // mysql update row with matched pid
-    $result = mysql_query("INSERT INTO smobject (`nameObject`, `descObject`, `latObject`, `longObject`,  `smUser_idUser`, `smCategory_idCategory`) VALUES ('$nameObject','$descObject', $latObject, $longObject,'$smUser_idUser','$smCategory_idCategory')");
+    $result = mysql_query("INSERT INTO smobject (`nameObject`, `descObject`, `latObject`, `longObject`,  `smUser_idUser`, `smCategory_idCategory`) VALUES ('$nameObject','$descObject', $latObject, $longObject,$smUser_idUser,$smCategory_idCategory)");
 
     // check if row inserted or not
     if ($result) {
@@ -46,7 +46,6 @@ if (isset($_POST['nameObject']) && isset($_POST['descObject']) /*&& isset($_POST
     } else {
         $response["success"] = 2;
         $response["message"] = "Requête incorrecte.";
-        $response["erreur"] = $result;
 
         echo json_encode($response);
     }
