@@ -25,9 +25,6 @@ if (isset($_POST['nameObject']) && isset($_POST['descObject']) /*&& isset($_POST
     $smUser_idUser = $_POST['smUser_idUser'];
     $smCategory_idCategory = $_POST['smCategory_idCategory'];
 
-
-    $dateRegistration;
-
 // include db connect class
     require '../controller/db_connect.php';
 
