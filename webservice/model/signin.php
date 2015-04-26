@@ -26,7 +26,7 @@ if (isset($_POST['nameUser']) && isset($_POST['surnameUser']) && isset($_POST['m
   mysql_query('SET CHARACTER SET utf8');
 
   // mysql update row with matched pid
-  $result = mysql_query("INSERT INTO smUser (idUser, nameUser, surnameUser, mailUser, passwordUser,dateRegistration,profilPictureUser) VALUES (NULL ,'$nameUser','$surnameUser','$mailUser','$passwordUser', NULL, NULL)");
+  $result = mysql_query("INSERT INTO smUser (idUser, nameUser, surnameUser, mailUser, passwordUser,dateRegistration,profilPictureUser) VALUES (NULL ,'$nameUser','$surnameUser','$mailUser','$passwordUser', NOW(), NULL)");
 
   // check if row inserted or not
   if ($result) {
