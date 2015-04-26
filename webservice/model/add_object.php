@@ -8,7 +8,7 @@ $fields['nameObject']=$_POST['nameObject'];
 $fields['descObject']=$_POST['descObject'];
 $fields['latObject'] = $_POST['latObject'];
 $fields['longObject'] = $_POST['longObject'];
-$fields['imagePathObject']=$_POST['imagePathObject'];
+$fields['imagePath1Object']=$_POST['imagePath1Object'];
 $fields['smUser_idUser']=$_POST['smUser_idUser'];
 $fields['smCategory_idCategory']=$_POST['smCategory_idCategory'];
 
@@ -24,11 +24,11 @@ if (isset($_POST['nameObject']) && isset($_POST['descObject']) && isset($_POST['
     $smUser_idUser = $_POST['smUser_idUser'];
     $smCategory_idCategory = $_POST['smCategory_idCategory'];
 
-    if(isset($_POST['imagePathObject'])){
-        $imagePathObject = $_POST['imagePathObject'];
+    if(isset($_POST['imagePath1Object'])){
+        $imagePath1Object = $_POST['imagePath1Object'];
     }
     else{
-        $imagePathObject = null;
+        $imagePath1Object = null;
     }
 
 
@@ -41,7 +41,7 @@ if (isset($_POST['nameObject']) && isset($_POST['descObject']) && isset($_POST['
     mysql_query('SET CHARACTER SET utf8');
 
     // mysql update row with matched pid
-    $result = mysql_query("INSERT INTO smObject (idObject, nameObject, descObject, latObject, longObject, imagePath1Object, addedDateTimeObject, smCity_idCity, smUser_idUser, smCategory_idCategory) VALUES (NULL,'$nameObject','$descObject', $latObject, $longObject,NULL ,NOW(),NULL ,$smUser_idUser,$smCategory_idCategory)");
+    $result = mysql_query("INSERT INTO smObject (idObject, nameObject, descObject, latObject, longObject, imagePath1Object, addedDateTimeObject, smCity_idCity, smUser_idUser, smCategory_idCategory) VALUES (NULL,'$nameObject','$descObject', $latObject, $longObject,$imagePath1Object ,NOW(),NULL ,$smUser_idUser,$smCategory_idCategory)");
 
     // check if row inserted or not
     if ($result) {
