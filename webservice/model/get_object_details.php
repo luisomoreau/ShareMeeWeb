@@ -42,9 +42,6 @@ $result = mysql_query("SELECT * FROM smObject INNER JOIN smUser ON smUser.idUser
             $object["surnameUser"] = $result["surnameUser"];
             $object["idCategory"] = $result["idCategory"];
             $object["nameCategory"] = $result["nameCategory"];
-            $object["idCity"] = $result["idCity"];
-            $object["nameCity"] = $result["nameCity"];
-            $object["zipcodeCity"] = $result["zipcodeCity"];
 
             // success
             $response["success"] = 1;
