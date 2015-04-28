@@ -84,7 +84,7 @@ $mail->Debugoutput = 'html';
 //Encoding
 $mail->CharSet = 'UTF-8';
 //Set the hostname of the mail server
-$mail->Host = "smtp.sharemee.com";
+$mail->Host = "sharemee.com";
 //Set the SMTP port number - likely to be 25, 465 or 587
 $mail->Port = 465;
 //Whether to use SMTP authentication
