@@ -16,6 +16,7 @@ $fields['idObject']=$_POST['idObject'];
 $receiverusername = "";
 $receivermail= "";
 
+
 // check for required fields
 if (isset($_POST['name']) && isset($_POST['mail']) && isset($_POST['subject']) && isset($_POST['message'])) {
 
