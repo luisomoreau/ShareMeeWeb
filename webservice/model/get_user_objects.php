@@ -57,6 +57,7 @@ if (mysql_num_rows($result) > 0) {
 } else {
     // no products found
     $response["success"] = 0;
+    echo mysql_error();
     $response["message"] = "No object found";
 
     // echo no users JSON
