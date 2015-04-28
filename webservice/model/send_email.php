@@ -1,5 +1,7 @@
 <?php
 
+header('Content-Type: text/html; charset=utf-8');
+
 /** Post request */
 // array for JSON response
 $response = array();
@@ -22,6 +24,9 @@ if (isset($_POST['name']) && isset($_POST['mail']) && isset($_POST['subject']) &
     $messagesubject = $_POST['subject'];
     $messagecontent = $_POST['message'];
     $idobject=$_POST['idObject'];
+
+    $messagecontent = utf8_encode($messagecontent);
+    $messagesubject = utf8_encode($messagesubject);
 
     // include db connect class
     require '../controller/db_connect.php';
