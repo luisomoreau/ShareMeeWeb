@@ -18,17 +18,17 @@ $db = new DB_CONNECT();
 mysql_query('SET CHARACTER SET utf8');
 
 if (isset($_GET["idObject"])) {
-    $idObject = $_GET['idObject'];
+    $idObject = mysql_real_escape_string($_GET['idObject']);
 
 // get all products from products table
-$result = mysql_query("SELECT * FROM smObject INNER JOIN smUser ON smUser.idUser = smObject.smUser_idUser INNER JOIN smCategory ON smObject.smCategory_idCategory=smCategory.idCategory WHERE idObject = $idObject") or die(mysql_error());
+    $result = mysql_query("SELECT * FROM smObject INNER JOIN smUser ON smUser.idUser = smObject.smUser_idUser INNER JOIN smCategory ON smObject.smCategory_idCategory=smCategory.idCategory WHERE idObject = $idObject") or die(mysql_error());
 
     if (!empty($result)) {
         // check for empty result
         if (mysql_num_rows($result) > 0) {
 
             $result = mysql_fetch_array($result);
-
+            //add query's result into an array
             $object = array();
             $object["idObject"] = $result["idObject"];
             $object["nameObject"] = $result["nameObject"];
@@ -51,7 +51,6 @@ $result = mysql_query("SELECT * FROM smObject INNER JOIN smUser ON smUser.idUser
 
             // push single product into final response array
             array_push($response["object"], $object);
-
 
 
             // echoing JSON response

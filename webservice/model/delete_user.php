@@ -4,13 +4,13 @@
 $response = array();
 
 $fields = array();
-$fields['idUser']=$_POST['idUser'];
+$fields['idUser'] = $_POST['idUser'];
 
 
 // check for required fields
 if (isset($_POST['idUser'])) {
 
-    $idUser = $_POST['idUser'];
+    $idUser = mysql_real_escape_string($_POST['idUser']);
 
 
 // include db connect class
@@ -33,7 +33,7 @@ if (isset($_POST['idUser'])) {
         // echoing JSON response
         echo json_encode($response);
 
-        $result1=mysql_query("DELETE FROM smUser WHERE idUser=$idUser");
+        $result1 = mysql_query("DELETE FROM smUser WHERE idUser=$idUser");
 
         if ($result1) {
             // successfully updated
@@ -57,7 +57,7 @@ if (isset($_POST['idUser'])) {
     // required field is missing
     $response["success"] = 0;
     $response["message"] = "Required field(s) is missing";
-    $response["fields"]=array();
+    $response["fields"] = array();
     array_push($response["fields"], $fields);
 
     // echoing JSON response

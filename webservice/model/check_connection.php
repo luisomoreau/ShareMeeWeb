@@ -4,14 +4,14 @@
 $response = array();
 
 $fields = array();
-$fields['mailUser']=$_POST['mailUser'];
-$fields['passwordUser']=$_POST['passwordUser'];
+$fields['mailUser'] = $_POST['mailUser'];
+$fields['passwordUser'] = $_POST['passwordUser'];
 
 // check for required fields
 if (isset($_POST['mailUser']) && isset($_POST['passwordUser'])) {
 
-    $mailUser = $_POST['mailUser'];
-    $passwordUser = $_POST['passwordUser'];
+    $mailUser = mysql_real_escape_string($_POST['mailUser']);
+    $passwordUser = mysql_real_escape_string($_POST['passwordUser']);
 
 // include db connect class
     require '../controller/db_connect.php';
@@ -25,20 +25,22 @@ if (isset($_POST['mailUser']) && isset($_POST['passwordUser'])) {
     // check for empty result
     if ($result) {
         $row = $row = mysql_fetch_array($result);
-        $password=$row["passwordUser"];
-        $id=$row["idUser"];
+        $passwordHash = $row["passwordUser"];
+        $id = $row["idUser"];
 
-        if($password==$passwordUser){
+        $hashSecure1 = md5(PREFIX_SALT.$passwordUser.SUFFIX_SALT);
+
+
+        if ($hashSecure1 == $passwordHash) {
             // success
             $response["success"] = 1;
-            $response["idUser"]=$id;
-            $response["mailUser"]=$mailUser;
+            $response["idUser"] = $id;
+            $response["mailUser"] = $mailUser;
             $response["message"] = "Login successfull";
             // echoing JSON response
             echo json_encode($response);
 
-        }
-        else{
+        } else {
             //password incorrect
             $response["success"] = 2;
             $response["message"] = "Incorrect password";
@@ -47,8 +49,7 @@ if (isset($_POST['mailUser']) && isset($_POST['passwordUser'])) {
             echo json_encode($response);
 
         }
-    }
-    else{
+    } else {
         // no user found
         $response["success"] = 3;
         $response["message"] = "User not found";
@@ -56,7 +57,7 @@ if (isset($_POST['mailUser']) && isset($_POST['passwordUser'])) {
         // echo no users JSON
         echo json_encode($response);
     }
-}else{
+} else {
     // missing fields
     $response["success"] = 4;
     $response["message"] = "Missing fields";

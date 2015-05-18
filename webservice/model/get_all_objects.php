@@ -35,7 +35,7 @@ if (mysql_num_rows($result) > 0) {
         $object["descObject"] = $row["descObject"];
         $object["latObject"] = $row["latObject"];
         $object["longObject"] = $row["longObject"];
-        $object["imagePath1Object"]=$row["imagePath1Object"];
+        $object["imagePath1Object"] = $row["imagePath1Object"];
         $object["idUser"] = $row["idUser"];
         $object["nameUser"] = $row["nameUser"];
         $object["idCategory"] = $row["idCategory"];

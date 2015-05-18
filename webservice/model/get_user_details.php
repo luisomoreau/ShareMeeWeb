@@ -17,18 +17,19 @@ require '../controller/db_connect.php';
 $db = new DB_CONNECT();
 mysql_query('SET CHARACTER SET utf8');
 
+//TODO use post request
 if (isset($_GET["idUser"])) {
-    $idUser = $_GET['idUser'];
+    $idUser = mysql_real_escape_string($_GET['idUser']);
 
 // get all products from products table
-$result = mysql_query("SELECT * FROM smUser WHERE idUser = $idUser") or die(mysql_error());
+    $result = mysql_query("SELECT * FROM smUser WHERE idUser = $idUser") or die(mysql_error());
 
     if (!empty($result)) {
         // check for empty result
         if (mysql_num_rows($result) > 0) {
 
             $result = mysql_fetch_array($result);
-
+            //add query's result into an array
             $user = array();
             $user["idUser"] = $result["idUser"];
             $user["nameUser"] = $result["nameUser"];
@@ -46,11 +47,10 @@ $result = mysql_query("SELECT * FROM smUser WHERE idUser = $idUser") or die(mysq
             array_push($response["user"], $user);
 
 
-
             // echoing JSON response
             echo json_encode($response);
         } else {
-            // no product found
+            // no user found
             $response["success"] = 0;
             $response["message"] = "No user found";
 
@@ -58,7 +58,7 @@ $result = mysql_query("SELECT * FROM smUser WHERE idUser = $idUser") or die(mysq
             echo json_encode($response, JSON_UNESCAPED_UNICODE);
         }
     } else {
-        // no product found
+        // no user found
         $response["success"] = 0;
         $response["message"] = "No user found";
 

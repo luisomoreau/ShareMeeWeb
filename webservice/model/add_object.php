@@ -3,40 +3,40 @@
 // array for JSON response
 $response = array();
 
+//Storing JSON POST fields into array
 $fields = array();
-$fields['nameObject']=$_POST['nameObject'];
-$fields['descObject']=$_POST['descObject'];
+$fields['nameObject'] = $_POST['nameObject'];
+$fields['descObject'] = $_POST['descObject'];
 $fields['latObject'] = $_POST['latObject'];
 $fields['longObject'] = $_POST['longObject'];
-$fields['imagePath1Object']=$_POST['imagePath1Object'];
-$fields['smUser_idUser']=$_POST['smUser_idUser'];
-$fields['smCategory_idCategory']=$_POST['smCategory_idCategory'];
-
+$fields['imagePath1Object'] = $_POST['imagePath1Object'];
+$fields['smUser_idUser'] = $_POST['smUser_idUser'];
+$fields['smCategory_idCategory'] = $_POST['smCategory_idCategory'];
 
 
 // check for required fields
-if (isset($_POST['nameObject']) && isset($_POST['descObject']) && isset($_POST['smCategory_idCategory'])&& isset($_POST['smUser_idUser'])) {
+if (isset($_POST['nameObject']) && isset($_POST['descObject']) && isset($_POST['smCategory_idCategory']) && isset($_POST['smUser_idUser'])) {
 
-    $nameObject = $_POST['nameObject'];
-    $descObject = $_POST['descObject'];
-    $latObject = $_POST['latObject'];
-    $longObject = $_POST['longObject'];
-    $smUser_idUser = $_POST['smUser_idUser'];
-    $smCategory_idCategory = $_POST['smCategory_idCategory'];
+    //Store POST fields into variables
+    $nameObject = mysql_real_escape_string($_POST['nameObject']);
+    $descObject = mysql_real_escape_string($_POST['descObject']);
+    $latObject = mysql_real_escape_string($_POST['latObject']);
+    $longObject = mysql_real_escape_string($_POST['longObject']);
+    $smUser_idUser = mysql_real_escape_string($_POST['smUser_idUser']);
+    $smCategory_idCategory = mysql_real_escape_string($_POST['smCategory_idCategory']);
 
-    if(isset($_POST['imagePath1Object'])){
-        $imagePath1Object = $_POST['imagePath1Object'] ;
+    //check if an image name has been set
+    if (isset($_POST['imagePath1Object'])) {
+        $imagePath1Object = mysql_real_escape_string($_POST['imagePath1Object']);
+    } else {
+        $imagePath1Object = "NULL";
     }
-    else{
-        $imagePath1Object ="NULL";
-    }
 
 
-
-// include db connect class
+    //Include db connect class
     require '../controller/db_connect.php';
 
-// connecting to db
+    //Connecting to db
     $db = new DB_CONNECT();
     mysql_query('SET CHARACTER SET utf8');
 
@@ -62,7 +62,7 @@ if (isset($_POST['nameObject']) && isset($_POST['descObject']) && isset($_POST['
     // required field is missing
     $response["success"] = 0;
     $response["message"] = "Required field(s) is missing";
-    $response["fields"]=array();
+    $response["fields"] = array();
     array_push($response["fields"], $fields);
 
     // echoing JSON response

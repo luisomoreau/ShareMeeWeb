@@ -1,12 +1,48 @@
 /*Afficher tous les objets*/
-SELECT * FROM 'smObject';
+SELECT *
+FROM 'smObject';
 /*Afficher tous les utilisateurs*/
-SELECT * FROM 'smUser';
+SELECT *
+FROM 'smUser';
 /*Afficher toutes les categories*/
-SELECT  * FROM 'smCategory';
+SELECT *
+FROM 'smCategory';
 
 /*Afficher tous les objets d'un utilisateur*/
-SELECT * FROM smObject INNER JOIN smUser ON smUser.idUser = smObject.smUser_idUser WHERE smUser.nameUser='Louis';
+SELECT *
+FROM smObject
+  INNER JOIN smUser ON smUser.idUser = smObject.smUser_idUser
+WHERE smUser.nameUser = 'Louis';
 
 /*Selectionner les infos objets en lien avec les utilisateurs catégories et villes*/
-SELECT idObject, nameObject, brandObject, descObject, latObject, longObject, YearObject, idUser ,nameUser, idCategory, nameCategory, idCity, nameCity FROM smObject INNER JOIN smUser ON smUser.idUser = smObject.smUser_idUser INNER JOIN smCategory ON smObject.smCategory_idCategory=smCategory.idCategory INNER JOIN smCity ON smObject.smCity_idCity = smCity.idCity;
+SELECT
+  idObject,
+  nameObject,
+  brandObject,
+  descObject,
+  latObject,
+  longObject,
+  YearObject,
+  idUser,
+  nameUser,
+  idCategory,
+  nameCategory,
+  idCity,
+  nameCity
+FROM smObject
+  INNER JOIN smUser ON smUser.idUser = smObject.smUser_idUser
+  INNER JOIN smCategory ON smObject.smCategory_idCategory = smCategory.idCategory
+  INNER JOIN smCity ON smObject.smCity_idCity = smCity.idCity;
+
+/*Other usefull queries used in tests */
+SELECT * FROM smObject INNER JOIN smUser ON smUser.idUser = smObject.smUser_idUser WHERE smUser.nameUser='Louis';
+
+SELECT idObject, nameObject, descObject, latObject, longObject, idUser ,nameUser, idCategory, nameCategory, idCity, nameCity FROM smObject INNER JOIN smUser ON smUser.idUser = smObject.smUser_idUser INNER JOIN smCategory ON smObject.smCategory_idCategory=smCategory.idCategory INNER JOIN smCity ON smObject.smCity_idCity = smCity.idCity;
+SELECT * FROM smObject INNER JOIN smUser ON smUser.idUser = smObject.smUser_idUser INNER JOIN smCategory ON smObject.smCategory_idCategory=smCategory.idCategory INNER JOIN smCity ON smObject.smCity_idCity = smCity.idCity WHERE idObject=1;
+INSERT INTO smUser (idUser, nameUser, surnameUser, mailUser, passwordUser,dateRegistration,profilPictureUser) VALUES (NULL ,'louis','Moreau','louis.moreau@hei.fr','sharemee', NULL, NULL);
+SELECT passwordUser, idUser FROM smUser WHERE mailUser = 'jules.moreau@hei.fr';
+SELECT nameUser,mailUser FROM smUser INNER JOIN smObject ON smUser.idUser = smObject.smUser_idUser WHERE idObject=17;
+SELECT idObject, nameObject, descObject, latObject, longObject, imagePath1Object, idUser ,nameUser, idCategory, nameCategory
+FROM smObject INNER JOIN smUser ON smUser.idUser = smObject.smUser_idUser
+  INNER JOIN smCategory ON smObject.smCategory_idCategory=smCategory.idCategory WHERE smCategory.nameCategory LIKE '%%' AND smObject.nameObject LIKE '%%' AND smObject.descObject LIKE '%%'
+ORDER BY addedDateTimeObject DESC;

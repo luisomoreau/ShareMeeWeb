@@ -4,13 +4,13 @@
 $response = array();
 
 $fields = array();
-$fields['idObject']=$_POST['idObject'];
+$fields['idObject'] = $_POST['idObject'];
 
 
 // check for required fields
 if (isset($_POST['idObject'])) {
 
-    $idObject = $_POST['idObject'];
+    $idObject = mysql_real_escape_string($_POST['idObject']);
 
 
 // include db connect class
@@ -40,7 +40,7 @@ if (isset($_POST['idObject'])) {
     // required field is missing
     $response["success"] = 0;
     $response["message"] = "Required field(s) is missing";
-    $response["fields"]=array();
+    $response["fields"] = array();
     array_push($response["fields"], $fields);
 
     // echoing JSON response
