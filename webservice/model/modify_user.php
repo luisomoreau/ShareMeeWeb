@@ -26,15 +26,22 @@ if (isset($_POST['nameUser']) && isset($_POST['idUser']) && isset($_POST['surnam
     $surnameUser = mysql_real_escape_string($_POST['surnameUser']);
     $mailUser = mysql_real_escape_string($_POST['mailUser']);
     $passwordUser = mysql_real_escape_string($_POST['passwordUser']);
+    $dateRegistration;
 
     $hashSecure = md5(PREFIX_SALT.$passwordUser.SUFFIX_SALT);
 
-    if (isset($_POST['profilPictureUser'])) {
+    if (isset($_POST['profilPictureUser'])||($_POST['profilPicture']!="NULL")) {
         $profilPictureUser = mysql_real_escape_string($_POST['profilPictureUser']);
+        // mysql update row with matched pid
+        $result = mysql_query("UPDATE smUser SET nameUser='$nameUser',surnameUser='$surnameUser',mailUser='$mailUser',passwordUser='$hashSecure',profilPictureUser='$profilPictureUser' WHERE idUser=$idUser");
+
     } else {
-        $profilPictureUser = "NULL";
+        //$profilPictureUser = "NULL";
+        // mysql update row with matched pid
+        $result = mysql_query("UPDATE smUser SET nameUser='$nameUser',surnameUser='$surnameUser',mailUser='$mailUser',passwordUser='$hashSecure' WHERE idUser=$idUser");
+
     }
-    $dateRegistration;
+
 
 
     // mysql update row with matched pid

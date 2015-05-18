@@ -37,7 +37,7 @@ if (isset($_POST['search_field']) && isset($_POST['category'])) {
         // get products from products table
         $result = mysql_query("SELECT idObject, nameObject, descObject, latObject, longObject, imagePath1Object, idUser ,nameUser, idCategory, nameCategory
     FROM smObject INNER JOIN smUser ON smUser.idUser = smObject.smUser_idUser
-    INNER JOIN smCategory ON smObject.smCategory_idCategory=smCategory.idCategory WHERE smCategory.nameCategory LIKE '%$category%' AND smObject.nameObject LIKE '%$searchField%' AND smObject.descObject LIKE '%$searchField%'
+    INNER JOIN smCategory ON smObject.smCategory_idCategory=smCategory.idCategory WHERE smCategory.nameCategory LIKE '%$category%' AND (smObject.nameObject LIKE '%$searchField%' OR smObject.descObject LIKE '%$searchField%')
     ORDER BY addedDateTimeObject DESC;") or die(mysql_error());
     }
 
