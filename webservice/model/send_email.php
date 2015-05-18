@@ -132,7 +132,7 @@ if (!$mail->send()) {
 }}
 else{
     $response["success"] = 0;
-    $response["message"] = "Erreur";
+    $response["message"] = "Erreur, champs manquants";
 
     echo json_encode($response);
 }
