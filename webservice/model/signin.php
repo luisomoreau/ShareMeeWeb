@@ -36,6 +36,7 @@ if (isset($_POST['nameUser']) && isset($_POST['surnameUser']) && isset($_POST['m
         $response["success"] = 1;
         $response["message"] = "Utilisateur cree.";
 
+
         // echoing JSON response
         echo json_encode($response);
     } else {

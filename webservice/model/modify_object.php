@@ -16,7 +16,7 @@ $fields['imagePath1Object'] = $_POST['imagePath1Object'];
 // check for required fields
 if (isset($_POST['idObject']) && isset($_POST['nameObject']) && isset($_POST['descObject']) && isset($_POST['latObject']) && isset($_POST['longObject']) && isset($_POST['smUser_idUser']) && isset($_POST['smCategory_idCategory'])) {
 
-    $idObject = mysql_real_escape_string($_POST['idObject']);
+    $idObject = intval($_POST['idObject']);
     $nameObject = mysql_real_escape_string($_POST['nameObject']);
     $descObject = mysql_real_escape_string($_POST['descObject']);
     $latObject = mysql_real_escape_string($_POST['latObject']);

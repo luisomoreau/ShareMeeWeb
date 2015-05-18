@@ -10,7 +10,7 @@ $fields['idUser'] = $_POST['idUser'];
 // check for required fields
 if (isset($_POST['idUser'])) {
 
-    $idUser = ($_POST['idUser']);
+    $idUser = intval($_POST['idUser']);
 
 
 // include db connect class

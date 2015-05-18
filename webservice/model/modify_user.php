@@ -14,7 +14,7 @@ $fields['profilPictureUser'] = $_POST['profilPictureUser'];
 // check for required fields
 if (isset($_POST['nameUser']) && isset($_POST['idUser']) && isset($_POST['surnameUser']) && isset($_POST['mailUser']) && isset($_POST['passwordUser'])) {
 
-    $idUser = mysql_real_escape_string($_POST['idUser']);
+    $idUser = intval($_POST['idUser']);
     $nameUser = mysql_real_escape_string($_POST['nameUser']);
     $surnameUser = mysql_real_escape_string($_POST['surnameUser']);
     $mailUser = mysql_real_escape_string($_POST['mailUser']);

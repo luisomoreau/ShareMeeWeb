@@ -19,7 +19,7 @@ mysql_query('SET CHARACTER SET utf8');
 
 //TODO use post request
 if (isset($_GET["idUser"])) {
-    $idUser = mysql_real_escape_string($_GET['idUser']);
+    $idUser = intval($_GET['idUser']);
 
 // get all products from products table
     $result = mysql_query("SELECT * FROM smUser WHERE idUser = $idUser") or die(mysql_error());

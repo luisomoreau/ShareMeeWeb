@@ -18,7 +18,7 @@ mysql_query('SET CHARACTER SET utf8');
 
 //TODO use POST request
 if (isset($_GET["idUser"])) {
-    $user = mysql_real_escape_string($_GET['idUser']);
+    $user = intval($_GET['idUser']);
 
 // get all products from products table
     $result = mysql_query("SELECT idObject, nameObject, descObject, latObject, longObject, imagePath1Object, idUser ,nameUser, idCategory, nameCategory

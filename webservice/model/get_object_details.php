@@ -18,7 +18,7 @@ $db = new DB_CONNECT();
 mysql_query('SET CHARACTER SET utf8');
 
 if (isset($_GET["idObject"])) {
-    $idObject = mysql_real_escape_string($_GET['idObject']);
+    $idObject = intval($_GET['idObject']);
 
 // get all products from products table
     $result = mysql_query("SELECT * FROM smObject INNER JOIN smUser ON smUser.idUser = smObject.smUser_idUser INNER JOIN smCategory ON smObject.smCategory_idCategory=smCategory.idCategory WHERE idObject = $idObject") or die(mysql_error());

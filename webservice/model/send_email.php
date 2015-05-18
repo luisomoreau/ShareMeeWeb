@@ -24,7 +24,7 @@ if (isset($_POST['name']) && isset($_POST['mail']) && isset($_POST['subject']) &
     $sendermail = mysql_real_escape_string($_POST['mail']);
     $messagesubject = mysql_real_escape_string($_POST['subject']);
     $messagecontent = mysql_real_escape_string($_POST['message']);
-    $idobject = mysql_real_escape_string($_POST['idObject']);
+    $idobject = intval($_POST['idObject']);
 
     $messagecontent = utf8_encode($messagecontent);
     $messagesubject = utf8_encode($messagesubject);
