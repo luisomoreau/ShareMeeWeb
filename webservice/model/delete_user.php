@@ -10,7 +10,7 @@ $fields['idUser'] = $_POST['idUser'];
 // check for required fields
 if (isset($_POST['idUser'])) {
 
-    $idUser = mysql_real_escape_string($_POST['idUser']);
+    $idUser = ($_POST['idUser']);
 
 
 // include db connect class

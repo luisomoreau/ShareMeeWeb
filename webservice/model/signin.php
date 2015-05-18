@@ -18,7 +18,6 @@ if (isset($_POST['nameUser']) && isset($_POST['surnameUser']) && isset($_POST['m
     $passwordUser = mysql_real_escape_string($_POST['passwordUser']);
     $dateRegistration;
 
-
     $hashSecure = md5(PREFIX_SALT.$passwordUser.SUFFIX_SALT);
 
 // include db connect class
