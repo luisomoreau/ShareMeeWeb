@@ -16,6 +16,13 @@ $fields['imagePath1Object'] = $_POST['imagePath1Object'];
 // check for required fields
 if (isset($_POST['idObject']) && isset($_POST['nameObject']) && isset($_POST['descObject']) && isset($_POST['latObject']) && isset($_POST['longObject']) && isset($_POST['smUser_idUser']) && isset($_POST['smCategory_idCategory'])) {
 
+    // include db connect class
+    require '../controller/db_connect.php';
+
+// connecting to db
+    $db = new DB_CONNECT();
+    mysql_query('SET CHARACTER SET utf8');
+
     $idObject = intval($_POST['idObject']);
     $nameObject = mysql_real_escape_string($_POST['nameObject']);
     $descObject = mysql_real_escape_string($_POST['descObject']);
@@ -30,13 +37,6 @@ if (isset($_POST['idObject']) && isset($_POST['nameObject']) && isset($_POST['de
         $imagePath1Object = "NULL";
     }
     $dateRegistration;
-
-// include db connect class
-    require '../controller/db_connect.php';
-
-// connecting to db
-    $db = new DB_CONNECT();
-    mysql_query('SET CHARACTER SET utf8');
 
     // mysql update row with matched pid
     $result = mysql_query("UPDATE smObject SET nameObject = '$nameObject', descObject = '$descObject', latObject = $latObject, longObject = $longObject, imagePath1Object = '$imagePath1Object', smCategory_idCategory = $idCategory WHERE idObject = $idObject;");

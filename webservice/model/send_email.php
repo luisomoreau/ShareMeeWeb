@@ -20,6 +20,13 @@ $receivermail = "";
 // check for required fields
 if (isset($_POST['name']) && isset($_POST['mail']) && isset($_POST['subject']) && isset($_POST['message'])) {
 
+    // include db connect class
+    require '../controller/db_connect.php';
+
+    // connecting to db
+    $db = new DB_CONNECT();
+    mysql_query('SET CHARACTER SET utf8');
+
     $senderusername = mysql_real_escape_string($_POST['name']);
     $sendermail = mysql_real_escape_string($_POST['mail']);
     $messagesubject = mysql_real_escape_string($_POST['subject']);
@@ -28,13 +35,6 @@ if (isset($_POST['name']) && isset($_POST['mail']) && isset($_POST['subject']) &
 
     $messagecontent = utf8_encode($messagecontent);
     $messagesubject = utf8_encode($messagesubject);
-
-    // include db connect class
-    require '../controller/db_connect.php';
-
-// connecting to db
-    $db = new DB_CONNECT();
-    mysql_query('SET CHARACTER SET utf8');
 
     // mysql update row with matched pid
     $result = mysql_query("SELECT nameUser,mailUser FROM smUser INNER JOIN smObject ON smUser.idUser = smObject.smUser_idUser WHERE idObject=$idobject") or die(mysql_error());

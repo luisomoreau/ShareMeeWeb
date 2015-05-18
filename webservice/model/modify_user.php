@@ -14,6 +14,13 @@ $fields['profilPictureUser'] = $_POST['profilPictureUser'];
 // check for required fields
 if (isset($_POST['nameUser']) && isset($_POST['idUser']) && isset($_POST['surnameUser']) && isset($_POST['mailUser']) && isset($_POST['passwordUser'])) {
 
+// include db connect class
+    require '../controller/db_connect.php';
+
+// connecting to db
+    $db = new DB_CONNECT();
+    mysql_query('SET CHARACTER SET utf8');
+
     $idUser = intval($_POST['idUser']);
     $nameUser = mysql_real_escape_string($_POST['nameUser']);
     $surnameUser = mysql_real_escape_string($_POST['surnameUser']);
@@ -29,12 +36,6 @@ if (isset($_POST['nameUser']) && isset($_POST['idUser']) && isset($_POST['surnam
     }
     $dateRegistration;
 
-// include db connect class
-    require '../controller/db_connect.php';
-
-// connecting to db
-    $db = new DB_CONNECT();
-    mysql_query('SET CHARACTER SET utf8');
 
     // mysql update row with matched pid
     $result = mysql_query("UPDATE smUser SET nameUser='$nameUser',surnameUser='$surnameUser',mailUser='$mailUser',passwordUser='$hashSecure',profilPictureUser='$profilPictureUser' WHERE idUser=$idUser");

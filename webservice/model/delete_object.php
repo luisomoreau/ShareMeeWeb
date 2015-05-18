@@ -10,15 +10,14 @@ $fields['idObject'] = $_POST['idObject'];
 // check for required fields
 if (isset($_POST['idObject'])) {
 
-    $idObject = intval($_POST['idObject']);
-
-
 // include db connect class
     require '../controller/db_connect.php';
 
 // connecting to db
     $db = new DB_CONNECT();
     mysql_query('SET CHARACTER SET utf8');
+
+    $idObject = intval($_POST['idObject']);
 
     // mysql update row with matched pid
     $result = mysql_query("DELETE FROM smObject WHERE idObject=$idObject");

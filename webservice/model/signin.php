@@ -12,6 +12,13 @@ $fields['passwordUser'] = $_POST['passwordUser'];
 // check for required fields
 if (isset($_POST['nameUser']) && isset($_POST['surnameUser']) && isset($_POST['mailUser']) && isset($_POST['passwordUser'])) {
 
+// include db connect class
+    require '../controller/db_connect.php';
+
+// connecting to db
+    $db = new DB_CONNECT();
+    mysql_query('SET CHARACTER SET utf8');
+
     $nameUser = mysql_real_escape_string($_POST['nameUser']);
     $surnameUser = mysql_real_escape_string($_POST['surnameUser']);
     $mailUser = mysql_real_escape_string($_POST['mailUser']);
@@ -19,13 +26,6 @@ if (isset($_POST['nameUser']) && isset($_POST['surnameUser']) && isset($_POST['m
     $dateRegistration;
 
     $hashSecure = md5(PREFIX_SALT.$passwordUser.SUFFIX_SALT);
-
-// include db connect class
-    require '../controller/db_connect.php';
-
-// connecting to db
-    $db = new DB_CONNECT();
-    mysql_query('SET CHARACTER SET utf8');
 
     // mysql update row with matched pid
     $result = mysql_query("INSERT INTO smUser (idUser, nameUser, surnameUser, mailUser, passwordUser,dateRegistration,profilPictureUser) VALUES (NULL ,'$nameUser','$surnameUser','$mailUser','$hashSecure', NOW(), NULL)");

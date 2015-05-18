@@ -14,19 +14,18 @@ $fields['category'] = $_POST['category'];
 // check for required fields
 if (isset($_POST['search_field']) && isset($_POST['category'])) {
 
-    $searchField = mysql_real_escape_string($_POST['search_field']);
-    $category = mysql_real_escape_string($_POST['category']);
-
-    $searchField = utf8_encode($searchField);
-    $category = utf8_encode($category);
-
-
     // include db connect class
     require '../controller/db_connect.php';
 
     // connecting to db
     $db = new DB_CONNECT();
     mysql_query('SET CHARACTER SET utf8');
+
+    $searchField = mysql_real_escape_string($_POST['search_field']);
+    $category = mysql_real_escape_string($_POST['category']);
+
+    $searchField = utf8_encode($searchField);
+    $category = utf8_encode($category);
 
     if ($category == "Toutes catégories") {
         // get products from products table

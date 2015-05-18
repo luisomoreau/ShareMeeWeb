@@ -10,15 +10,15 @@ $fields['passwordUser'] = $_POST['passwordUser'];
 // check for required fields
 if (isset($_POST['mailUser']) && isset($_POST['passwordUser'])) {
 
-    $mailUser = mysql_real_escape_string($_POST['mailUser']);
-    $passwordUser = mysql_real_escape_string($_POST['passwordUser']);
-
-// include db connect class
+    // include db connect class
     require '../controller/db_connect.php';
 
 // connecting to db
     $db = new DB_CONNECT();
     mysql_query('SET CHARACTER SET utf8');
+
+    $mailUser = mysql_real_escape_string($_POST['mailUser']);
+    $passwordUser = mysql_real_escape_string($_POST['passwordUser']);
 
     // mysql update row with matched pid
     $result = mysql_query("SELECT passwordUser, idUser FROM smUser WHERE mailUser = '$mailUser'") or die(mysql_error());
