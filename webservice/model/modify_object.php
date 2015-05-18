@@ -37,13 +37,11 @@ if (isset($_POST['idObject']) && isset($_POST['nameObject']) && isset($_POST['de
         $result = mysql_query("UPDATE smObject SET nameObject = '$nameObject', descObject = '$descObject', latObject = $latObject, longObject = $longObject, imagePath1Object = '$imagePath1Object', smCategory_idCategory = $idCategory WHERE idObject = $idObject;");
 
     } else {
-        //$imagePath1Object = "NULL";
+        $imagePath1Object = "NULL";
         // mysql update row with matched pid
-        $result = mysql_query("UPDATE smObject SET nameObject = '$nameObject', descObject = '$descObject', latObject = $latObject, longObject = $longObject, smCategory_idCategory = $idCategory WHERE idObject = $idObject;");
+        $result = mysql_query("UPDATE smObject SET nameObject = '$nameObject', descObject = '$descObject', latObject = $latObject, longObject = $longObject, imagePath1Object = '$imagePath1Object', smCategory_idCategory = $idCategory WHERE idObject = $idObject;");
 
     }
-    $dateRegistration;
-
 
     // check if row inserted or not
     if ($result) {
