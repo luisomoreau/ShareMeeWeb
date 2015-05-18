@@ -12,10 +12,10 @@ $fields['passwordUser'] = $_POST['passwordUser'];
 // check for required fields
 if (isset($_POST['nameUser']) && isset($_POST['surnameUser']) && isset($_POST['mailUser']) && isset($_POST['passwordUser'])) {
 
-    $nameUser = mysqli::escape_string($_POST['nameUser']);
-    $surnameUser = mysqli::escape_string($_POST['surnameUser']);
-    $mailUser = mysqli::escape_string($_POST['mailUser']);
-    $passwordUser = mysqli::escape_string($_POST['passwordUser']);
+    $nameUser = mysql_real_escape_string($_POST['nameUser']);
+    $surnameUser = mysql_real_escape_string($_POST['surnameUser']);
+    $mailUser = mysql_real_escape_string($_POST['mailUser']);
+    $passwordUser = mysql_real_escape_string($_POST['passwordUser']);
     $dateRegistration;
 
     $hashSecure = md5(PREFIX_SALT.$passwordUser.SUFFIX_SALT);
